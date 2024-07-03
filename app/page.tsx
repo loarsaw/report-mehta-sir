@@ -32,7 +32,11 @@ export default function Home() {
         <div>
           <button
             onClick={() => {
-              router.push("/report");
+              if (uid == "") {
+                alert("Enter UID");
+              } else {
+                router.push(`/report?search=${uid}`);
+              }
             }}
             className="bg-red-500 p-3 rounded-full"
           >

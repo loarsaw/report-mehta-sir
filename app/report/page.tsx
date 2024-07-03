@@ -1,24 +1,43 @@
 "use client";
 import axios from "axios";
-import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const ReportCard = () => {
-  const [student] = useState({
-    uid: "S010",
-    name: "Laura Anderson",
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get("search");
+  console.log(search);
+  const [student, set_data] = useState({
+    uid: "",
+    name: "",
     marks: {
-      test1: 89,
-      test2: 91,
-      test3: 90,
-      test4: 92,
-      finalExam: 94,
+      test1: 0,
+      test2: 0,
+      test3: 0,
+      test4: 0,
+      finalExam: 0,
     },
-    attendance: 97,
-    fatherName: "Joshua Anderson",
-    mobileNo: "012-345-6789",
-    class: "10E",
-    graduationYear: 2024,
+    attendance: 0,
+    fatherName: "",
+    mobileNo: "",
+    class: "",
+    graduationYear: 0,
   });
+  useEffect(() => {
+    get_data();
+  }, [search]);
+
+  async function get_data() {
+    axios
+      .post("http://localhost:8000/get_data", {
+        uid: search,
+      })
+      .then((data) => {
+        console.log(data.data);
+        set_data(data.data);
+      });
+  }
   const get_pdf = async () => {
     try {
       const response = await axios.get("https://api.quickcourse.xyz/report", {
