@@ -59,7 +59,7 @@ const ReportCard = () => {
             </div>
             <div>
               <p className="text-gray-700 text-base mb-2">
-                <strong>Father's Name:</strong> {student.fatherName}
+                <strong>Father Name:</strong> {student.fatherName}
               </p>
               <p className="text-gray-700 text-base mb-2">
                 <strong>Mobile No:</strong> {student.mobileNo}
