@@ -30,7 +30,7 @@ const ReportCard = () => {
 
   async function get_data() {
     axios
-      .post("http://localhost:8000/get_data", {
+      .post("https://api.quickcourse.xyz/get_data", {
         uid: search,
       })
       .then((data) => {
