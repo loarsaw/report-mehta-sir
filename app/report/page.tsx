@@ -4,10 +4,6 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ReportCard = () => {
-  const searchParams = useSearchParams();
-
-  const search = searchParams.get("search");
-  console.log(search);
   const [student, set_data] = useState({
     uid: "",
     name: "",
@@ -26,12 +22,12 @@ const ReportCard = () => {
   });
   useEffect(() => {
     get_data();
-  }, [search]);
+  }, []);
 
   async function get_data() {
     axios
       .post("https://api.quickcourse.xyz/get_data", {
-        uid: search,
+        uid: "21BCS3908",
       })
       .then((data) => {
         console.log(data.data);
